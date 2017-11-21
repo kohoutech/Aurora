@@ -15,7 +15,7 @@ namespace Aurora
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AuroraWindow());
+            Application.Run(new AuWindow());
         }
     }
 }
