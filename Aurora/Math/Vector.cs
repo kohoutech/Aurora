@@ -21,30 +21,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
-using System.Drawing;
 
-
-using Aurora;
-using Aurora.Model;
-
-namespace Aurora.UI
+namespace Aurora.Math
 {
-    class AuCanvas : Control
+    public class Vector
     {
-        AuModel model;
+        float x, y, z;
 
-        public AuCanvas()
+        public Vector(float _x, float _y, float _z)
         {
-            BackColor = Color.SlateBlue;
+            x = _x;
+            y = _y;
+            z = _z;
         }
 
-        public void loadModel(String filename)
+        public float dotProduct(Vector that)
         {
-            model = AuModel.loadModel(filename);
-            Console.WriteLine("finished loading");
+            return (this.x * that.x + this.y * that.y + this.z * that.y);
         }
     }
 }
-
-//Console.WriteLine("there's no sun in the shadow of the Wizard");

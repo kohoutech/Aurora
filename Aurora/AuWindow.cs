@@ -100,12 +100,11 @@ namespace Aurora
 
         private void newToolStripButton_Click(object sender, EventArgs e)
         {
-            openModel();
         }
 
         private void openToolStripButton_Click(object sender, EventArgs e)
         {
-
+            openModel();
         }
 
         private void saveToolStripButton_Click(object sender, EventArgs e)

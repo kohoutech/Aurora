@@ -21,23 +21,44 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.IO;
+
+using Aurora.Math;
 
 namespace Aurora.Model
 {
-    class AuModel
+    public class AuModel
     {
+        List<Face> facets;
 
         public static AuModel loadModel(String filename)
         {
-            Byte[] srcbuf;
-            uint srclen;
-            uint srcpos;
-            AuModel result = null;
-
-            srcbuf = File.ReadAllBytes(filename);
-
+            STLParser parser = new STLParser(filename);
+            AuModel result = parser.parseFile();
             return result;
         }
+
+        public AuModel()
+        {
+            facets = new List<Face>();
+        }
+
+        public void addFacet(Face facet)
+        {
+            facets.Add(facet);
+        }
     }
+
+    public class Face
+    {
+        Vector normal, vert1, vert2, vert3;
+
+        public Face(Vector norm, Vector v1, Vector v2, Vector v3)
+        {
+            normal = norm;
+            vert1 = v1;
+            vert2 = v2;
+            vert3 = v3;
+        }
+    }
+
 }
