@@ -52,6 +52,8 @@
     <Compile Include="AuWindow.Designer.cs">
       <DependentUpon>AuWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Math\Face.cs" />
+    <Compile Include="Math\Point.cs" />
     <Compile Include="Math\Vector.cs" />
     <Compile Include="Model\AuModel.cs" />
     <Compile Include="Model\STLParser.cs" />

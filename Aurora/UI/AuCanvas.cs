@@ -23,26 +23,69 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
-
+using System.Drawing.Drawing2D;
 
 using Aurora;
 using Aurora.Model;
+using Aurora.Math;
 
 namespace Aurora.UI
 {
     class AuCanvas : Control
     {
         AuModel model;
+        float centerX, centerY;
+        float zoom;
 
         public AuCanvas()
         {
-            BackColor = Color.SlateBlue;
+            BackColor = Color.PaleGreen;
+            DoubleBuffered = true;
+            centerX = this.Width / 2;
+            centerY = this.Height / 2;
+            model = null;
         }
 
-        public void loadModel(String filename)
+        protected override void OnResize(EventArgs e)
         {
-            model = AuModel.loadModel(filename);
-            Console.WriteLine("finished loading");
+            base.OnResize(e);
+            centerX = this.Width / 2;
+            centerY = this.Height / 2;
+            if (model != null)
+            {
+                model.setCenter(centerX, centerY);
+            }
+            Invalidate();
+        }
+
+        public void setModel(AuModel _model)
+        {
+            model = _model;
+            model.setCenter(centerX, centerY);
+            Invalidate();
+        }
+
+        public void setZoom(float zoom)
+        {
+            model.setZoom(zoom);
+            Invalidate();
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            Graphics g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.AntiAlias;           
+
+            if (model != null)
+            {
+                foreach (Face view in model.views)
+                {
+                    g.DrawLine(Pens.Black, view.vert1.x, view.vert1.y, view.vert2.x, view.vert2.y);
+                    g.DrawLine(Pens.Black, view.vert2.x, view.vert2.y, view.vert3.x, view.vert3.y);
+                    g.DrawLine(Pens.Black, view.vert3.x, view.vert3.y, view.vert1.x, view.vert1.y);
+                }
+            }
         }
     }
 }

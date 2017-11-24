@@ -28,7 +28,10 @@ namespace Aurora.Model
 {
     public class AuModel
     {
-        List<Face> facets;
+        public List<Face> faces;
+        public List<Face> views;
+        float centerX, centerY;
+        float zoom;
 
         public static AuModel loadModel(String filename)
         {
@@ -39,25 +42,42 @@ namespace Aurora.Model
 
         public AuModel()
         {
-            facets = new List<Face>();
+            faces = new List<Face>();
+            views = new List<Face>();
+            centerX = 0.0f;
+            centerY = 0.0f;
+            zoom = 1.0f;
         }
 
         public void addFacet(Face facet)
         {
-            facets.Add(facet);
+            faces.Add(facet);
         }
-    }
 
-    public class Face
-    {
-        Vector normal, vert1, vert2, vert3;
-
-        public Face(Vector norm, Vector v1, Vector v2, Vector v3)
+        public void setCenter(float _centerX, float _centerY)
         {
-            normal = norm;
-            vert1 = v1;
-            vert2 = v2;
-            vert3 = v3;
+            centerX = _centerX;
+            centerY = _centerY;
+            updateView();
+        }
+
+        public void setZoom(float _zoom)
+        {
+            zoom = _zoom;
+            updateView();
+        }
+
+        public void updateView()
+        {
+            List<Face> newviews = new List<Face>();
+            foreach (Face face in faces)
+            {
+                Face view = new Face(face);
+                view.scale(zoom, zoom, 1.0f);
+                view.translate(centerX, centerY, 0.0f);
+                newviews.Add(view);
+            }
+            views = newviews;            
         }
     }
 

@@ -20,21 +20,45 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
+using System.Text;
 
-namespace Aurora
+namespace Aurora.Math
 {
-    static class Program
+    public class Face
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
+        Vector normal;
+        public Point vert1, vert2, vert3;
+
+        public Face(Vector norm, Point v1, Point v2, Point v3)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AuWindow());
+            normal = norm;
+            vert1 = v1;
+            vert2 = v2;
+            vert3 = v3;
         }
+
+        //copy cons
+        public Face (Face that)
+        {
+            normal = new Vector(that.normal);
+            vert1 = new Point(that.vert1);
+            vert2 = new Point(that.vert2);
+            vert3 = new Point(that.vert3);
+        }
+
+        public void translate(float x, float y, float z)
+        {
+            vert1.translate(x, y, z);
+            vert2.translate(x, y, z);
+            vert3.translate(x, y, z);
+        }
+
+        public void scale(float x, float y, float z)
+        {
+            vert1.scale(x, y, z);
+            vert2.scale(x, y, z);
+            vert3.scale(x, y, z);
+        }
+
     }
 }

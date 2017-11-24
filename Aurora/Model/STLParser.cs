@@ -91,9 +91,9 @@ namespace Aurora.Model
 
             linenum++;      //skip "outer loop"
 
-            Vector vert1 = readAsciiVector();
-            Vector vert2 = readAsciiVector();
-            Vector vert3 = readAsciiVector();
+            Point vert1 = readAsciiPoint();
+            Point vert2 = readAsciiPoint();
+            Point vert3 = readAsciiPoint();
             Face facet = new Face(normal, vert1, vert2, vert3);
 
             linenum++;      //skip "endloop"
@@ -102,13 +102,13 @@ namespace Aurora.Model
             return facet;
         }
 
-        public Vector readAsciiVector()
+        public Point readAsciiPoint()
         {
             String[] vertexdata = srctext[linenum++].Split();
             float x = Convert.ToSingle(vertexdata[1]);
             float y = Convert.ToSingle(vertexdata[2]);
             float z = Convert.ToSingle(vertexdata[3]);
-            Vector v = new Vector(x, y, z);
+            Point v = new Point(x, y, z);
             return v;
         }
 
@@ -139,9 +139,9 @@ namespace Aurora.Model
         public Face readBinaryFacet()
         {
             Vector normal = readBinaryVector();
-            Vector vert1 = readBinaryVector();
-            Vector vert2 = readBinaryVector();
-            Vector vert3 = readBinaryVector();
+            Point vert1 = readBinaryPoint();
+            Point vert2 = readBinaryPoint();
+            Point vert3 = readBinaryPoint();
             Face facet = new Face(normal, vert1, vert2, vert3);
 
             uint attrByteCount = getTwo();              //unused
@@ -154,6 +154,15 @@ namespace Aurora.Model
             float y = getFloat();
             float z = getFloat();
             Vector v = new Vector(x, y, z);
+            return v;
+        }
+
+        public Point readBinaryPoint()
+        {
+            float x = getFloat();
+            float y = getFloat();
+            float z = getFloat();
+            Point v = new Point(x, y, z);
             return v;
         }
 

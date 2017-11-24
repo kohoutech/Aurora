@@ -41,14 +41,16 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.auToolStrip = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.auStatusStrip = new System.Windows.Forms.StatusStrip();
             this.OpenModelDialog = new System.Windows.Forms.OpenFileDialog();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.AuMenuStrip.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.auToolStrip.SuspendLayout();
+            this.auStatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // AuMenuStrip
@@ -154,17 +156,17 @@
             this.aboutHelpMenuItem.Text = "&About...";
             this.aboutHelpMenuItem.Click += new System.EventHandler(this.aboutHelpMenuItem_Click);
             // 
-            // toolStrip1
+            // auToolStrip
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.auToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripButton,
             this.openToolStripButton,
             this.saveToolStripButton});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(434, 25);
-            this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
+            this.auToolStrip.Location = new System.Drawing.Point(0, 24);
+            this.auToolStrip.Name = "auToolStrip";
+            this.auToolStrip.Size = new System.Drawing.Size(434, 25);
+            this.auToolStrip.TabIndex = 1;
+            this.auToolStrip.Text = "toolStrip1";
             // 
             // newToolStripButton
             // 
@@ -196,33 +198,43 @@
             this.saveToolStripButton.Text = "&Save";
             this.saveToolStripButton.Click += new System.EventHandler(this.saveToolStripButton_Click);
             // 
-            // statusStrip1
+            // auStatusStrip
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 389);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(434, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
+            this.auStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.auStatusStrip.Location = new System.Drawing.Point(0, 389);
+            this.auStatusStrip.Name = "auStatusStrip";
+            this.auStatusStrip.Size = new System.Drawing.Size(434, 22);
+            this.auStatusStrip.TabIndex = 2;
+            this.auStatusStrip.Text = "statusStrip1";
             // 
             // OpenModelDialog
             // 
             this.OpenModelDialog.FileName = "openFileDialog1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(37, 17);
+            this.toolStripStatusLabel1.Text = "zoom";
             // 
             // AuWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 411);
-            this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.auStatusStrip);
+            this.Controls.Add(this.auToolStrip);
             this.Controls.Add(this.AuMenuStrip);
             this.MainMenuStrip = this.AuMenuStrip;
             this.Name = "AuWindow";
             this.Text = "Aurora";
             this.AuMenuStrip.ResumeLayout(false);
             this.AuMenuStrip.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.auToolStrip.ResumeLayout(false);
+            this.auToolStrip.PerformLayout();
+            this.auStatusStrip.ResumeLayout(false);
+            this.auStatusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,12 +254,13 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem aboutHelpMenuItem;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip auToolStrip;
         private System.Windows.Forms.ToolStripButton newToolStripButton;
         private System.Windows.Forms.ToolStripButton openToolStripButton;
         private System.Windows.Forms.ToolStripButton saveToolStripButton;
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.StatusStrip auStatusStrip;
         private System.Windows.Forms.OpenFileDialog OpenModelDialog;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 

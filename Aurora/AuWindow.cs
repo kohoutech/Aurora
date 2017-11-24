@@ -27,35 +27,74 @@ using System.Text;
 using System.Windows.Forms;
 
 using Aurora.UI;
+using Aurora.Model;
 
 namespace Aurora
 {
     public partial class AuWindow : Form
     {
         AuCanvas canvas;
+        AuModel curModel;
         String modelFilename;
+        TrackBar zoomTrackBar;
 
         public AuWindow()
         {
             InitializeComponent();
 
             canvas = new AuCanvas();
-            canvas.Dock = DockStyle.Fill;
+            canvas.Location = new Point(0, auToolStrip.Bottom);
+            canvas.Size = new Size(this.Width, auStatusStrip.Top - auToolStrip.Bottom);
             this.Controls.Add(canvas);
+
+            Label zoomlabel = new Label();
+            zoomTrackBar = new TrackBar();
+            zoomTrackBar.Width = 200;
+            zoomTrackBar.Height = 5;
+            zoomTrackBar.Minimum = 10;
+            zoomTrackBar.Maximum = 200;
+            zoomTrackBar.ValueChanged += new EventHandler(tb_ValueChanged);
+            ToolStripControlHost tch = new ToolStripControlHost(zoomTrackBar);
+            tch.Width = 200;
+            tch.Height = 5;
+            auStatusStrip.Items.Add(tch);
+
+
+            curModel = null;
+        }
+
+        void tb_ValueChanged(object sender, EventArgs e)
+        {
+            if (curModel != null)
+            {
+                canvas.setZoom(zoomTrackBar.Value / 10.0f);
+            }
+        }
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            if (canvas != null)
+            {
+                canvas.Location = new Point(0, auToolStrip.Bottom);
+                canvas.Size = new Size(this.Width, auStatusStrip.Top - auToolStrip.Bottom);
+            }
         }
 
         public void openModel()
         {
-            //OpenModelDialog.InitialDirectory = Application.StartupPath;
-            //OpenModelDialog.DefaultExt = "*.stl";
-            //OpenModelDialog.Filter = "stl files|*.stl|All files|*.*";
-            //OpenModelDialog.ShowDialog();
-            //String filename = OpenModelDialog.FileName;
-            String filename = "test.stl";
+            OpenModelDialog.InitialDirectory = Application.StartupPath;
+            OpenModelDialog.DefaultExt = "*.stl";
+            OpenModelDialog.Filter = "stl files|*.stl|All files|*.*";
+            OpenModelDialog.ShowDialog();
+            String filename = OpenModelDialog.FileName;
+            //String filename = "test.stl";
             if (filename.Length > 0)
             {
                 modelFilename = filename;
-                canvas.loadModel(modelFilename);
+                curModel = AuModel.loadModel(filename);
+                canvas.setModel(curModel);
+                zoomTrackBar.Value = 10;
                 this.Text = "Aurora [" + modelFilename + "]";
             }
         }

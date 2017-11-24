@@ -20,21 +20,41 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
+using System.Text;
 
-namespace Aurora
+namespace Aurora.Math
 {
-    static class Program
+    public class Point
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
+        public float x, y, z;
+
+        public Point(float _x, float _y, float _z)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AuWindow());
+            x = _x;
+            y = _y;
+            z = _z;
         }
+
+        public Point(Point that)
+        {
+            x = that.x;
+            y = that.y;
+            z = that.z;
+        }
+
+        public void translate(float ofsX, float ofsY, float ofsZ) 
+        {
+            x += ofsX;
+            y += ofsY;
+            z += ofsZ;
+        }
+
+        public void scale(float scaleX, float scaleY, float scaleZ)
+        {
+            x *= scaleX;
+            y *= scaleY;
+            z *= scaleZ;
+        }
+
     }
 }

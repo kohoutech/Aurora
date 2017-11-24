@@ -35,9 +35,11 @@ namespace Aurora.Math
             z = _z;
         }
 
-        public float dotProduct(Vector that)
+        public Vector(Vector that)
         {
-            return (this.x * that.x + this.y * that.y + this.z * that.y);
+            x = that.x;
+            y = that.y;
+            z = that.z;
         }
     }
 }
