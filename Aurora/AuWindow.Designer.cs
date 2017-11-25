@@ -46,8 +46,8 @@
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.auStatusStrip = new System.Windows.Forms.StatusStrip();
-            this.OpenModelDialog = new System.Windows.Forms.OpenFileDialog();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.OpenModelDialog = new System.Windows.Forms.OpenFileDialog();
             this.AuMenuStrip.SuspendLayout();
             this.auToolStrip.SuspendLayout();
             this.auStatusStrip.SuspendLayout();
@@ -208,15 +208,15 @@
             this.auStatusStrip.TabIndex = 2;
             this.auStatusStrip.Text = "statusStrip1";
             // 
-            // OpenModelDialog
-            // 
-            this.OpenModelDialog.FileName = "openFileDialog1";
-            // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(37, 17);
             this.toolStripStatusLabel1.Text = "zoom";
+            // 
+            // OpenModelDialog
+            // 
+            this.OpenModelDialog.FileName = "openFileDialog1";
             // 
             // AuWindow
             // 
@@ -226,6 +226,7 @@
             this.Controls.Add(this.auStatusStrip);
             this.Controls.Add(this.auToolStrip);
             this.Controls.Add(this.AuMenuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.AuMenuStrip;
             this.Name = "AuWindow";
             this.Text = "Aurora";
