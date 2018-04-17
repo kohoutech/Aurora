@@ -1,6 +1,6 @@
 ﻿/* ----------------------------------------------------------------------------
 Aurora : a 3-D modeler
-Copyright (C) 2007-2017  George E Greaney
+Copyright (C) 2007-2018  George E Greaney
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -46,17 +46,18 @@ namespace Aurora.UI
             model = null;
         }
 
-        protected override void OnResize(EventArgs e)
-        {
-            base.OnResize(e);
-            centerX = this.Width / 2;
-            centerY = this.Height / 2;
-            if (model != null)
-            {
-                model.setCenter(centerX, centerY);
-            }
-            Invalidate();
-        }
+
+        //protected override void OnResize(EventArgs e)
+        //{
+        //    base.OnResize(e);
+        //    //centerX = this.Width / 2;
+        //    //centerY = this.Height / 2;
+        //    //if (model != null)
+        //    //{
+        //    //    model.setCenter(centerX, centerY);
+        //    //}
+        //    //Invalidate();
+        //}
 
         public void setModel(AuModel _model)
         {
@@ -71,21 +72,26 @@ namespace Aurora.UI
             Invalidate();
         }
 
+        protected override void OnPaintBackground(PaintEventArgs pevent)
+        {
+            //does nothing, just overridden to prevent app from painting background & cause flicker
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            Graphics g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.AntiAlias;           
+            //Graphics g = e.Graphics;
+            //g.SmoothingMode = SmoothingMode.AntiAlias;           
 
-            if (model != null)
-            {
-                foreach (Face view in model.views)
-                {
-                    g.DrawLine(Pens.Black, view.vert1.x, view.vert1.y, view.vert2.x, view.vert2.y);
-                    g.DrawLine(Pens.Black, view.vert2.x, view.vert2.y, view.vert3.x, view.vert3.y);
-                    g.DrawLine(Pens.Black, view.vert3.x, view.vert3.y, view.vert1.x, view.vert1.y);
-                }
-            }
+            //if (model != null)
+            //{
+            //    foreach (Face view in model.views)
+            //    {
+            //        g.DrawLine(Pens.Black, view.vert1.x, view.vert1.y, view.vert2.x, view.vert2.y);
+            //        g.DrawLine(Pens.Black, view.vert2.x, view.vert2.y, view.vert3.x, view.vert3.y);
+            //        g.DrawLine(Pens.Black, view.vert3.x, view.vert3.y, view.vert1.x, view.vert1.y);
+            //    }
+            //}
         }
     }
 }

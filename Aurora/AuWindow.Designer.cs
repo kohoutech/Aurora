@@ -46,11 +46,9 @@
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.auStatusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.OpenModelDialog = new System.Windows.Forms.OpenFileDialog();
             this.AuMenuStrip.SuspendLayout();
             this.auToolStrip.SuspendLayout();
-            this.auStatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // AuMenuStrip
@@ -200,19 +198,11 @@
             // 
             // auStatusStrip
             // 
-            this.auStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
             this.auStatusStrip.Location = new System.Drawing.Point(0, 389);
             this.auStatusStrip.Name = "auStatusStrip";
             this.auStatusStrip.Size = new System.Drawing.Size(434, 22);
             this.auStatusStrip.TabIndex = 2;
             this.auStatusStrip.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(37, 17);
-            this.toolStripStatusLabel1.Text = "zoom";
             // 
             // OpenModelDialog
             // 
@@ -234,8 +224,6 @@
             this.AuMenuStrip.PerformLayout();
             this.auToolStrip.ResumeLayout(false);
             this.auToolStrip.PerformLayout();
-            this.auStatusStrip.ResumeLayout(false);
-            this.auStatusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,7 +249,6 @@
         private System.Windows.Forms.ToolStripButton saveToolStripButton;
         private System.Windows.Forms.StatusStrip auStatusStrip;
         private System.Windows.Forms.OpenFileDialog OpenModelDialog;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 

@@ -1,6 +1,6 @@
 ﻿/* ----------------------------------------------------------------------------
 Aurora : a 3-D modeler
-Copyright (C) 2007-2017  George E Greaney
+Copyright (C) 2007-2018  George E Greaney
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -47,29 +47,13 @@ namespace Aurora
             canvas.Size = new Size(this.Width, auStatusStrip.Top - auToolStrip.Bottom);
             this.Controls.Add(canvas);
 
-            Label zoomlabel = new Label();
-            zoomTrackBar = new TrackBar();
-            zoomTrackBar.Width = 200;
-            zoomTrackBar.Height = 5;
-            zoomTrackBar.Minimum = 10;
-            zoomTrackBar.Maximum = 200;
-            zoomTrackBar.ValueChanged += new EventHandler(tb_ValueChanged);
-            ToolStripControlHost tch = new ToolStripControlHost(zoomTrackBar);
-            tch.Width = 200;
-            tch.Height = 5;
-            auStatusStrip.Items.Add(tch);
-
-
             curModel = null;
+            canvas.Invalidate();
         }
 
-        void tb_ValueChanged(object sender, EventArgs e)
-        {
-            if (curModel != null)
-            {
-                canvas.setZoom(zoomTrackBar.Value / 10.0f);
-            }
-        }
+        //private void AuWindow_FormClosing(object sender, FormClosingEventArgs e)
+        //{            
+        //}
 
         protected override void OnResize(EventArgs e)
         {
@@ -91,11 +75,11 @@ namespace Aurora
             //String filename = "test.stl";
             if (filename.Length > 0)
             {
-                modelFilename = filename;
-                curModel = AuModel.loadModel(filename);
-                canvas.setModel(curModel);
-                zoomTrackBar.Value = 10;
-                this.Text = "Aurora [" + modelFilename + "]";
+                //modelFilename = filename;
+                //curModel = AuModel.loadModel(filename);
+                //canvas.setModel(curModel);
+                //zoomTrackBar.Value = 10;
+                //this.Text = "Aurora [" + modelFilename + "]";
             }
         }
 
@@ -128,8 +112,8 @@ namespace Aurora
 
         private void aboutHelpMenuItem_Click(object sender, EventArgs e)
         {
-            String msg = "Aurora\nversion 0.1.0\n" +
-                        "\xA9 Servo Software 2007-2017\n" + 
+            String msg = "Aurora\nversion 0.2.0\n" +
+                        "\xA9 Servo Software 2007-2018\n" + 
                         "http://servo.kohoutech.com";
             MessageBox.Show(msg, "About");
 
@@ -150,5 +134,6 @@ namespace Aurora
         {
 
         }
+
     }
 }
