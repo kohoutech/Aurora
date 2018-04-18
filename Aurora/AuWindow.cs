@@ -26,14 +26,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-using Aurora.UI;
+using Aurora.ThreeDBB;
 using Aurora.Model;
 
 namespace Aurora
 {
     public partial class AuWindow : Form
     {
-        AuCanvas canvas;
+        BBCanvas canvas;
         AuModel curModel;
         String modelFilename;
         TrackBar zoomTrackBar;
@@ -42,7 +42,7 @@ namespace Aurora
         {
             InitializeComponent();
 
-            canvas = new AuCanvas();
+            canvas = new BBCanvas();
             canvas.Location = new Point(0, auToolStrip.Bottom);
             canvas.Size = new Size(this.Width, auStatusStrip.Top - auToolStrip.Bottom);
             this.Controls.Add(canvas);

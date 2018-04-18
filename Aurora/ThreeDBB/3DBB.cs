@@ -29,15 +29,15 @@ using Aurora;
 using Aurora.Model;
 using Aurora.Math;
 
-namespace Aurora.UI
+namespace Aurora.ThreeDBB
 {
-    class AuCanvas : Control
+    class BBCanvas : Control
     {
         AuModel model;
         float centerX, centerY;
         float zoom;
 
-        public AuCanvas()
+        public BBCanvas()
         {
             BackColor = Color.PaleGreen;
             DoubleBuffered = true;
