@@ -20,11 +20,24 @@ namespace ThreeDBBTest
             InitializeComponent();
 
             canvas = new ThreeDCanvas();
-            canvas.Location = new Point(0, 0);
-            canvas.Size = new Size(this.Width, this.Height);
+            canvas.Location = new Point(0, 50);
+            canvas.Size = new Size(this.Width, this.Height - 50);
             this.Controls.Add(canvas);
 
             canvas.InitCanvas();
+        }
+
+        protected override void OnResize(EventArgs e)
+        {
+            if (canvas != null)
+            {
+                canvas.Size = new Size(this.Width, this.Height - 50);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            canvas.CloseIt();
         }
     }
 }

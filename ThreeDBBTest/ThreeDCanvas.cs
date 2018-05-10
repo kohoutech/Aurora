@@ -14,8 +14,13 @@ namespace ThreeDBBTest
     class ThreeDCanvas : Control
     {
         [DllImport("Xavier.DLL", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void RunTestWindow(IntPtr module);
+        public static extern void RunTestWindow(IntPtr module, IntPtr winhdl);
 
+        [DllImport("Xavier.DLL", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void CloseTestWindow();
+
+        [DllImport("Xavier.DLL", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void ResizeTestWindow(int width, int height);
 
         public ThreeDCanvas()
         {
@@ -25,7 +30,19 @@ namespace ThreeDBBTest
         public void InitCanvas()
         {
             IntPtr module = Process.GetCurrentProcess().Handle;
-            RunTestWindow(module);
+            IntPtr winhdl = Handle;
+            RunTestWindow(module, winhdl);
+        }
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            ResizeTestWindow(this.Width, this.Height);
+        }
+
+        internal void CloseIt()
+        {
+            CloseTestWindow();
         }
     }
 }
