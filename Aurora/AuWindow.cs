@@ -48,12 +48,13 @@ namespace Aurora
             this.Controls.Add(canvas);
 
             curModel = null;
-            canvas.Invalidate();
+            canvas.InitCanvas();
         }
 
-        //private void AuWindow_FormClosing(object sender, FormClosingEventArgs e)
-        //{            
-        //}
+        private void AuWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            canvas.CloseCanvas();
+        }
 
         protected override void OnResize(EventArgs e)
         {
