@@ -22,14 +22,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Aurora.Math;
-
 namespace Aurora.Model
 {
     public class AuModel
     {
-        public List<Face> faces;
-        public List<Face> views;
+        public List<Facet> facets;
+        public List<Facet> views;
         float centerX, centerY;
         float zoom;
 
@@ -42,16 +40,16 @@ namespace Aurora.Model
 
         public AuModel()
         {
-            faces = new List<Face>();
-            views = new List<Face>();
+            facets = new List<Facet>();
+            views = new List<Facet>();
             centerX = 0.0f;
             centerY = 0.0f;
             zoom = 1.0f;
         }
 
-        public void addFacet(Face facet)
+        public void addFacet(Facet facet)
         {
-            faces.Add(facet);
+            facets.Add(facet);
         }
 
         public void setCenter(float _centerX, float _centerY)
@@ -69,10 +67,10 @@ namespace Aurora.Model
 
         public void updateView()
         {
-            List<Face> newviews = new List<Face>();
-            foreach (Face face in faces)
+            List<Facet> newviews = new List<Facet>();
+            foreach (Facet face in facets)
             {
-                Face view = new Face(face);
+                Facet view = new Facet(face);
                 view.scale(zoom, zoom, 1.0f);
                 view.translate(centerX, centerY, 0.0f);
                 newviews.Add(view);

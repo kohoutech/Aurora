@@ -23,8 +23,6 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-using Aurora.Math;
-
 namespace Aurora.Model
 {
     class STLParser
@@ -74,13 +72,13 @@ namespace Aurora.Model
             linenum = 1;
             while (linenum < (srctext.Length - 1))          //-1 for the last "endsolid model" line
             {
-                Face facet = readAsciiFacet();
+                Facet facet = readAsciiFacet();
                 result.addFacet(facet);
             }
             return result;
         }
 
-        public Face readAsciiFacet()
+        public Facet readAsciiFacet()
         {
             //facet normal
             String[] normaldata = srctext[linenum++].Split();
@@ -91,10 +89,10 @@ namespace Aurora.Model
 
             linenum++;      //skip "outer loop"
 
-            Point vert1 = readAsciiPoint();
-            Point vert2 = readAsciiPoint();
-            Point vert3 = readAsciiPoint();
-            Face facet = new Face(normal, vert1, vert2, vert3);
+            Point3 vert1 = readAsciiPoint();
+            Point3 vert2 = readAsciiPoint();
+            Point3 vert3 = readAsciiPoint();
+            Facet facet = new Facet(normal, vert1, vert2, vert3);
 
             linenum++;      //skip "endloop"
             linenum++;      //skip "endfacet"
@@ -102,13 +100,13 @@ namespace Aurora.Model
             return facet;
         }
 
-        public Point readAsciiPoint()
+        public Point3 readAsciiPoint()
         {
             String[] vertexdata = srctext[linenum++].Split();
             float x = Convert.ToSingle(vertexdata[1]);
             float y = Convert.ToSingle(vertexdata[2]);
             float z = Convert.ToSingle(vertexdata[3]);
-            Point v = new Point(x, y, z);
+            Point3 v = new Point3(x, y, z);
             return v;
         }
 
@@ -129,20 +127,20 @@ namespace Aurora.Model
             uint facetcount = getFour();                //get num of facets
             for (int i = 0; i < facetcount; i++)
             {
-                Face facet = readBinaryFacet();
+                Facet facet = readBinaryFacet();
                 result.addFacet(facet);
             }
 
             return result;
         }
 
-        public Face readBinaryFacet()
+        public Facet readBinaryFacet()
         {
             Vector normal = readBinaryVector();
-            Point vert1 = readBinaryPoint();
-            Point vert2 = readBinaryPoint();
-            Point vert3 = readBinaryPoint();
-            Face facet = new Face(normal, vert1, vert2, vert3);
+            Point3 vert1 = readBinaryPoint();
+            Point3 vert2 = readBinaryPoint();
+            Point3 vert3 = readBinaryPoint();
+            Facet facet = new Facet(normal, vert1, vert2, vert3);
 
             uint attrByteCount = getTwo();              //unused
             return facet;
@@ -157,12 +155,12 @@ namespace Aurora.Model
             return v;
         }
 
-        public Point readBinaryPoint()
+        public Point3 readBinaryPoint()
         {
             float x = getFloat();
             float y = getFloat();
             float z = getFloat();
-            Point v = new Point(x, y, z);
+            Point3 v = new Point3(x, y, z);
             return v;
         }
 

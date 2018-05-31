@@ -1,6 +1,6 @@
-﻿/* ----------------------------------------------------------------------------
-Aurora : a 3-D modeler
-Copyright (C) 2007-2017  George E Greaney
+/* ----------------------------------------------------------------------------
+Aurora 3dBB Library
+Copyright (C) 2007-2018  George E Greaney
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -17,29 +17,17 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ----------------------------------------------------------------------------*/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+#if !defined(BBWindow_H)
+#define BBWindow_H
 
-namespace Aurora.Model
-{
-    public class Vector
-    {
-        float x, y, z;
+#include "windows.h"
 
-        public Vector(float _x, float _y, float _z)
-        {
-            x = _x;
-            y = _y;
-            z = _z;
-        }
+#include <d3d11.h>
+#include <d3dx11.h>
+#include <d3dx10.h>
 
-        public Vector(Vector that)
-        {
-            x = that.x;
-            y = that.y;
-            z = that.z;
-        }
-    }
-}
+#pragma comment (lib, "d3d11.lib")
+#pragma comment (lib, "d3dx11.lib")
+#pragma comment (lib, "d3dx10.lib")
+
+#endif // BBWindow_H

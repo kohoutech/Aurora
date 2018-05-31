@@ -22,38 +22,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Aurora.Math
+namespace Aurora.Model
 {
-    public class Point
+    public class Facet
     {
-        public float x, y, z;
+        Vector normal;
+        public Point3 vert1, vert2, vert3;
 
-        public Point(float _x, float _y, float _z)
+        public Facet(Vector norm, Point3 v1, Point3 v2, Point3 v3)
         {
-            x = _x;
-            y = _y;
-            z = _z;
+            normal = norm;
+            vert1 = v1;
+            vert2 = v2;
+            vert3 = v3;
         }
 
-        public Point(Point that)
+        //copy cons
+        public Facet (Facet that)
         {
-            x = that.x;
-            y = that.y;
-            z = that.z;
+            normal = new Vector(that.normal);
+            vert1 = new Point3(that.vert1);
+            vert2 = new Point3(that.vert2);
+            vert3 = new Point3(that.vert3);
         }
 
-        public void translate(float ofsX, float ofsY, float ofsZ) 
+        public void translate(float x, float y, float z)
         {
-            x += ofsX;
-            y += ofsY;
-            z += ofsZ;
+            vert1.translate(x, y, z);
+            vert2.translate(x, y, z);
+            vert3.translate(x, y, z);
         }
 
-        public void scale(float scaleX, float scaleY, float scaleZ)
+        public void scale(float x, float y, float z)
         {
-            x *= scaleX;
-            y *= scaleY;
-            z *= scaleZ;
+            vert1.scale(x, y, z);
+            vert2.scale(x, y, z);
+            vert3.scale(x, y, z);
         }
 
     }

@@ -220,6 +220,7 @@
             this.MainMenuStrip = this.AuMenuStrip;
             this.Name = "AuWindow";
             this.Text = "Aurora";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AuWindow_FormClosing);
             this.AuMenuStrip.ResumeLayout(false);
             this.AuMenuStrip.PerformLayout();
             this.auToolStrip.ResumeLayout(false);
