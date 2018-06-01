@@ -59,6 +59,7 @@
       <DependentUpon>AuWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Facet.cs" />
+    <Compile Include="Model\Mesh.cs" />
     <Compile Include="Model\Point3.cs" />
     <Compile Include="Model\Vector.cs" />
     <Compile Include="Model\AuModel.cs" />
