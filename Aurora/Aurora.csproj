@@ -69,6 +69,7 @@
     <Compile Include="ThreeDBB\BBCanvas.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\Stage.cs" />
     <EmbeddedResource Include="AuWindow.resx">
       <DependentUpon>AuWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -95,9 +96,7 @@
     <Content Include="Aurora.ico" />
     <Content Include="Resources\Aurora.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UI\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if $(ConfigurationName) == Release (
