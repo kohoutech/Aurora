@@ -22,16 +22,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Aurora.ThreeDBB;
+
 namespace Aurora.UI
 {
     class Stage
     {
+        BBCanvas canvas;
+
         public void drawFloor()
         {
+            float grid;
+            float grid_scale = 1.0f;
             int gridlines = 8;
+            grid = gridlines * grid_scale;
+
+
             for (int i = -gridlines; i < gridlines; i++)
             {
+                float line = i * grid_scale;
+
+
+                BBCanvas.drawArrays(1, 0, 4);
             }
+
         }
     }
 }

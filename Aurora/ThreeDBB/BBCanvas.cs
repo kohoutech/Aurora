@@ -127,6 +127,11 @@ namespace Aurora.ThreeDBB
         //    //    }
         //    //}
         //}
+
+        internal static void drawArrays(int p, int p_2, int p_3)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

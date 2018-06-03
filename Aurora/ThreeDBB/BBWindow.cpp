@@ -21,6 +21,35 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include <stdio.h>
 
+BBWindow* BBWindow::aBBWindow;
+
+//- dll interface -------------------------------------------------------------
+
+extern "C" __declspec(dllexport) void CreateBBWindow(HMODULE hModule, HWND phwd ) {
+
+	BBWindow::aBBWindow = new BBWindow(hModule, phwd );
+	appInstance = hModule;
+	parentWnd = phwd;
+	RECT rect;
+	GetWindowRect(parentWnd, &rect);
+	d3dWidth = rect.right - rect.left;
+	d3dHeight = rect.bottom - rect.top;
+	CreateBBWindow();	
+}
+
+extern "C" __declspec(dllexport) void ResizeBBWindow(int width, int height) {
+
+	d3dWidth = width;
+	d3dHeight = height;
+	SetWindowPos(d3dWnd, HWND_TOP, 0, 0, width, height, NULL);
+}
+
+extern "C" __declspec(dllexport) void CloseBBWindow() {
+
+	ShutdownD3D();
+	SendMessage(d3dWnd, WM_CLOSE, NULL, NULL);	
+}
+
 HINSTANCE  appInstance;
 HWND       parentWnd;
 HWND	   d3dWnd;
@@ -44,8 +73,12 @@ ID3D11RenderTargetView *backbuffer;
 ID3D11InputLayout *pLayout;            
 ID3D11VertexShader *pVertShader;
 ID3D11PixelShader *pPixelShader;                
-ID3D11Buffer *pVBuffer;                
+ID3D11Buffer *pVBuffer; 
 
+//- window methods ------------------------------------------------------------
+
+//we register a BBWindowClass and create a window "d3dWnd" from this class. the window will receive its own messages
+//but it will entirely cover the client area of the C# window and move/resize with it so the two will appear as one
 void CreateBBWindow()
 {
 	WNDCLASSEX wc;
@@ -131,6 +164,7 @@ LRESULT CALLBACK BBWindowProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lP
 
 void StartUpD3D(HWND hWnd)
 {
+	//create the swap chain description
 	DXGI_SWAP_CHAIN_DESC scd;
 	ZeroMemory(&scd, sizeof(DXGI_SWAP_CHAIN_DESC));
 
@@ -164,6 +198,7 @@ void StartUpD3D(HWND hWnd)
 
 	devcon->OMSetRenderTargets(1, &backbuffer, NULL);
 
+	//set viewport to window size
 	D3D11_VIEWPORT viewport;
 	ZeroMemory(&viewport, sizeof(D3D11_VIEWPORT));
 
@@ -251,28 +286,3 @@ void ShutdownD3D(void)
 	devcon->Release();
 }
 
-//-----------------------------------------------------------------------------
-
-extern "C" __declspec(dllexport) void CreateBBWindow(HMODULE hModule, HWND _phwd ) {
-
-	appInstance = hModule;
-	parentWnd = _phwd;
-	RECT rect;
-	GetWindowRect(parentWnd, &rect);
-	d3dWidth = rect.right - rect.left;
-	d3dHeight = rect.bottom - rect.top;
-	CreateBBWindow();	
-}
-
-extern "C" __declspec(dllexport) void ResizeBBWindow(int width, int height) {
-
-	d3dWidth = width;
-	d3dHeight = height;
-	SetWindowPos(d3dWnd, HWND_TOP, 0, 0, width, height, NULL);
-}
-
-extern "C" __declspec(dllexport) void CloseBBWindow() {
-
-	ShutdownD3D();
-	SendMessage(d3dWnd, WM_CLOSE, NULL, NULL);	
-}
